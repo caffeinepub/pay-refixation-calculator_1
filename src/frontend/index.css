@@ -1,0 +1,313 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Government of India Pay Refixation Calculator Design System */
+
+/* Font Faces */
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans[wght].woff2") format("woff2");
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono[wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/Fraunces[SOFT,WONK,opsz,wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.375rem;
+
+    /* Government Blue palette - professional, authoritative */
+    --background: 0.98 0.005 240;
+    --foreground: 0.15 0.03 250;
+
+    --card: 1 0 0;
+    --card-foreground: 0.15 0.03 250;
+
+    --popover: 1 0 0;
+    --popover-foreground: 0.15 0.03 250;
+
+    /* Primary: Deep Government Blue #1a4a8a → OKLCH */
+    --primary: 0.35 0.12 255;
+    --primary-foreground: 0.99 0 0;
+
+    --secondary: 0.94 0.02 240;
+    --secondary-foreground: 0.25 0.08 255;
+
+    --muted: 0.95 0.01 240;
+    --muted-foreground: 0.5 0.04 250;
+
+    /* Accent: Saffron/Amber for 6th CPC */
+    --accent: 0.78 0.16 80;
+    --accent-foreground: 0.15 0 0;
+
+    --destructive: 0.52 0.22 27;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.88 0.02 240;
+    --input: 0.92 0.02 240;
+    --ring: 0.35 0.12 255;
+
+    /* CPC Era colors */
+    --cpc5-bg: 0.35 0.12 255;
+    --cpc5-text: 0.99 0 0;
+    --cpc6-bg: 0.68 0.15 80;
+    --cpc6-text: 0.15 0 0;
+    --cpc7-bg: 0.5 0.15 145;
+    --cpc7-text: 0.99 0 0;
+
+    /* Arrears colors */
+    --arrears-positive: 0.52 0.22 27;
+    --arrears-zero: 0.48 0.15 145;
+
+    /* Govt header gradient */
+    --govt-blue-dark: 0.28 0.13 255;
+    --govt-blue-mid: 0.35 0.12 255;
+    --govt-gold: 0.75 0.15 85;
+
+    --chart-1: 0.35 0.12 255;
+    --chart-2: 0.68 0.15 80;
+    --chart-3: 0.48 0.15 145;
+    --chart-4: 0.52 0.22 27;
+    --chart-5: 0.65 0.12 200;
+
+    --sidebar: 0.97 0.01 240;
+    --sidebar-foreground: 0.15 0.03 250;
+    --sidebar-primary: 0.35 0.12 255;
+    --sidebar-primary-foreground: 0.99 0 0;
+    --sidebar-accent: 0.93 0.02 240;
+    --sidebar-accent-foreground: 0.25 0.08 255;
+    --sidebar-border: 0.88 0.02 240;
+    --sidebar-ring: 0.35 0.12 255;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Plus Jakarta Sans", sans-serif;
+  }
+
+  .font-mono-nums {
+    font-family: "Geist Mono", monospace;
+  }
+}
+
+/* Government header styles */
+.govt-header {
+  background: linear-gradient(135deg, oklch(0.28 0.13 255) 0%, oklch(0.35 0.12 255) 50%, oklch(0.28 0.13 255) 100%);
+  border-bottom: 3px solid oklch(0.75 0.15 85);
+}
+
+/* Step indicator */
+.step-circle {
+  transition: all 0.3s ease;
+}
+
+.step-circle.active {
+  background: oklch(0.35 0.12 255);
+  border-color: oklch(0.35 0.12 255);
+  color: white;
+  box-shadow: 0 0 0 4px oklch(0.35 0.12 255 / 0.2);
+}
+
+.step-circle.completed {
+  background: oklch(0.35 0.12 255);
+  border-color: oklch(0.35 0.12 255);
+  color: white;
+}
+
+.step-circle.pending {
+  background: white;
+  border-color: oklch(0.80 0.02 240);
+  color: oklch(0.6 0.02 240);
+}
+
+/* CPC Era badges */
+.badge-5th {
+  background: oklch(0.35 0.12 255 / 0.15);
+  color: oklch(0.25 0.12 255);
+  border: 1px solid oklch(0.35 0.12 255 / 0.3);
+  font-family: "Geist Mono", monospace;
+  font-size: 0.65rem;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.badge-6th {
+  background: oklch(0.68 0.15 80 / 0.15);
+  color: oklch(0.45 0.14 75);
+  border: 1px solid oklch(0.68 0.15 80 / 0.35);
+  font-family: "Geist Mono", monospace;
+  font-size: 0.65rem;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.badge-7th {
+  background: oklch(0.48 0.15 145 / 0.12);
+  color: oklch(0.35 0.15 145);
+  border: 1px solid oklch(0.48 0.15 145 / 0.3);
+  font-family: "Geist Mono", monospace;
+  font-size: 0.65rem;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+/* Arrears color coding */
+.arrears-positive {
+  color: oklch(0.52 0.22 27);
+  font-weight: 600;
+  font-family: "Geist Mono", monospace;
+}
+
+.arrears-zero {
+  color: oklch(0.45 0.15 145);
+  font-family: "Geist Mono", monospace;
+}
+
+/* Table sticky header */
+.pay-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.pay-table th {
+  position: sticky;
+  top: 0;
+  background: oklch(0.28 0.13 255);
+  color: white;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.pay-table .sub-header th {
+  background: oklch(0.32 0.11 255);
+  top: 40px;
+}
+
+/* Refixed row highlight */
+.row-refixed {
+  background: oklch(0.97 0.04 80 / 0.3) !important;
+}
+
+/* Editable cell */
+.editable-cell {
+  cursor: pointer;
+  border-bottom: 1px dashed oklch(0.35 0.12 255 / 0.5);
+  transition: background 0.15s ease;
+}
+
+.editable-cell:hover {
+  background: oklch(0.35 0.12 255 / 0.07);
+}
+
+/* Summary cards */
+.summary-card-5th {
+  border-top: 3px solid oklch(0.35 0.12 255);
+}
+
+.summary-card-6th {
+  border-top: 3px solid oklch(0.68 0.15 80);
+}
+
+.summary-card-7th {
+  border-top: 3px solid oklch(0.48 0.15 145);
+}
+
+.summary-card-arrears {
+  border-top: 3px solid oklch(0.52 0.22 27);
+}
+
+/* Print styles */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .print-statement,
+  .print-statement * {
+    visibility: visible;
+  }
+
+  .print-statement {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    color: black;
+    font-family: "Times New Roman", serif;
+    font-size: 12pt;
+    padding: 20mm;
+  }
+
+  .print-header {
+    text-align: center;
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+
+  .print-title {
+    font-size: 16pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .print-subtitle {
+    font-size: 12pt;
+    margin-top: 4px;
+  }
+
+  .print-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9pt;
+    margin-top: 15px;
+  }
+
+  .print-table th,
+  .print-table td {
+    border: 1px solid #333;
+    padding: 3px 6px;
+  }
+
+  .print-table th {
+    background: #eee;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .print-signatures {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
